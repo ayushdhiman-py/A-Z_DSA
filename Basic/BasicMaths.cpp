@@ -27,18 +27,75 @@ int reverse(int n)
     return reversedNum;
 }
 
-int pailindrome(int n,int m){
-    return (n==m);
+int pailindrome(int n, int m)
+{
+    return (n == m);
+}
+
+void printDivisors(int n)
+{
+    // loop is running for O(sqrt(n))
+    for (int i = 1; i < sqrt(n); i++) // instead of sqrt write i*i<=n
+    {
+        if (n % i == 0)
+        {
+            cout << i << " ";
+            if ((n / i) != i)
+            {
+                cout << (n / i) << " ";
+            }
+        }
+    }
+    // And if we store the divisors in a vector and sort it, it will take extra O(n*log(n)) where n is number of
+    // factors and then printing will be taking extra O(n)
+
+    // Hence, the overall TC will be the following:
+    // O(sqrt(n)) + O(n*log(n)) + O(n)
+}
+
+void prime(int n)
+{
+    int count = 0;
+    for(int i=1; i<sqrt(n); i++){
+        if(n%i==0){
+            count++;
+            if((n/i)!=i){
+                count++;
+            }
+        }
+    }
+    if(count==2) cout<<"true";
+    else cout<<"false";
 }
 
 
+//GCD OR HDF
+
+int gdc(int a, int b)
+{
+    // RECURSION WAY
+    // if(a==0) {
+    //     return b;
+    // }
+    // b=a%b;
+    // return 0 ; 
+
+
+    //------------
+    // ITERATIVE WAY
+    while(a>0 && b>0){
+        if(a>b) a=a%b;
+        else b=b%a;
+    }
+    if(a==0) return b;
+    return a;
+}
 
 int main()
 {
-    int n = 121;
-    int reversed = reverse(n);
-    bool isPailindrome = pailindrome(n,reversed);
-    cout << (isPailindrome?"True\n":"False\n") << endl;
-
+    int n = 40, m = 20;
+    int res = gcd(n,m);
+    cout<<__gcd(n,m);
+    cout<<res;
     return 0;
 }
