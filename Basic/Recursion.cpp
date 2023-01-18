@@ -1,18 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void printNnumbers(int i, int n){
+void printNnumbers(int i){
     if(i<1){
         return;
     }
     cout<<"Ayush Dhiman "<<i<<"\n";
-    printNnumbers(i-1,n);
+    printNnumbers(i-1);
 }
 
 void printLinear(int i,int n){
-    
-    // Below is 1-N :-
 
+    // Below is 1-N :-
     if(i>n){
         return;
     }
@@ -37,9 +36,8 @@ void printLinear(int i,int n){
 }
 
 int sumN(int n){
+    // *** HOW I DID BEFORE I SAW THE TUTORIAL *** //
     // (int initial,int n)
-    // HOW I DID BEFORE I SAW THE TUTORIAL
-    
     // if(n<1){
     //     cout<<initial<<"\n";
     //     return;
@@ -47,19 +45,12 @@ int sumN(int n){
     // initial+=n;
     // sumN(initial,n-1);
 
-    // ITERATIVE WAY //
-    // if(i<1){
-    //     cout<<sum<<"\n";
-    //     return;
-    // }
-    // sumN(i-1,sum+i);
-
-    // FUNCTIONAL WAY //
+    // *** FUNCTIONAL WAY *** //
     if(n==0){
         return 0;
     }
     return n+sumN(n-1);
-    
+
 }
 
 int factorial(int n){
@@ -76,14 +67,14 @@ int fibonacci(int n){
     return (fibonacci(n-1)+fibonacci(n-2));
 }
 
+void reverse(int start, int end, vector<int> &v){
+    if(start>=end) return;
+    swap(v[start],v[end]);
+    reverse(start+1,end-1,v);
+}
+
 int main(){
 
-    int i=0,x=10;
-    cout << "\nFionnaci Series : ";
-    while(i < x) {
-        cout << " " << fibonacci(i);
-        i++;
-    }
-
+	printNnumbers(10);
     return 0;
 }
