@@ -1,61 +1,84 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-void merge(vector<int> &arr, int left, int mid, int right)
-{
-    vector<int> temp;
-    int low = left;
-    int high = mid + 1;
+void merge(int *arr, int s, int e) {
 
-    while (low <= mid && high <= right)
-    {
-        if (arr[low] <= arr[high])
-        {
-            temp.push_back(arr[low]);
-            low++;
+    int mid = (s+e)/2;
+
+    int len1 = mid - s + 1;
+    int len2 = e - mid;
+
+    int *first = new int[len1];
+    int *second = new int[len2];
+
+    //copy values
+    int mainArrayIndex = s;
+    for(int i=0; i<len1; i++) {
+        first[i] = arr[mainArrayIndex++];
+    }
+
+    mainArrayIndex = mid+1;
+    for(int i=0; i<len2; i++) {
+        second[i] = arr[mainArrayIndex++];
+    }
+
+    //merge 2 sorted arrays     
+    int index1 = 0;
+    int index2 = 0;
+    mainArrayIndex = s;
+
+    while(index1 < len1 && index2 < len2) {
+        if(first[index1] < second[index2]) {
+            arr[mainArrayIndex++] = first[index1++];
         }
-        else
-        {
-            temp.push_back(arr[high]);
-            high++;
+        else{
+            arr[mainArrayIndex++] = second[index2++];
         }
+    }   
+
+    while(index1 < len1) {
+        arr[mainArrayIndex++] = first[index1++];
     }
-    while (low <= mid)
-    {
-        temp.push_back(arr[low]);
-        low++;
+
+    while(index2 < len2 ) {
+        arr[mainArrayIndex++] = second[index2++];
     }
-    while (high <= right)
-    {
-        temp.push_back(arr[high]);
-        high++;
-    }
-    for (int i = left; i <= right; i++)
-    {
-        arr[i] = temp[i - left];
-    }
+
+    delete []first;
+    delete []second;
+
 }
 
-void mergeSort(vector<int> &arr, int left, int right)
-{
-    if (left == right)
-    {
+void mergeSort(int *arr, int s, int e) {
+
+    //base case
+    if(s >= e) {
         return;
     }
-    int mid = (left + right) / 2;
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    merge(arr, left, mid, right);
+    
+    int mid = (s+e)/2;
+
+    //left part sort karna h 
+    mergeSort(arr, s, mid);
+    
+    //right part sort karna h 
+    mergeSort(arr, mid+1, e);
+
+    //merge
+    merge(arr, s, e);
+
 }
 
-int main()
-{
+int main() {
 
-    vector<int> v{0, 1, 9, 6, 7, 3, 98, 37, 2, 4};
-    mergeSort(v, 0, v.size() - 1);
-    for (auto a : v)
-    {
-        cout << a << " ";
-    }
+    int arr[15] = {3,7,0,1,5,8,3,2,34,66,87,23,12,12,12};
+    int n = 15;
+
+    mergeSort(arr, 0, n-1);
+
+    for(int i=0;i<n;i++){
+        cout << arr[i] << " ";
+    } cout << endl;
+
     return 0;
 }
