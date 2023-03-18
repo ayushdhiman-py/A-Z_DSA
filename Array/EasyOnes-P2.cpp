@@ -57,18 +57,96 @@ void moveZeroes(vector<int> &arr)
     return;
 }
 
-vector<int> unionn(vector<int> &arr1, vector<int> arr2)
+class UnionIntersectionBrute
 {
-    //TC :  n1+n2 
-    //SC :  n1+n2 
-    int i = 0, j = 0;
-    int n1 = arr1.size();
-    int n2 = arr2.size();
-    vector<int> unionarr;
-
-    while (i < n1 && j < n2)
+public:
+    vector<int> unionn(vector<int> &arr1, vector<int> &arr2)
     {
-        if (arr1[i] <= arr2[j])
+        // TC :  n1+n2
+        // SC :  n1+n2
+        int i = 0, j = 0;
+        int n1 = arr1.size();
+        int n2 = arr2.size();
+        vector<int> result;
+        set<int> unionarrset;
+
+        while (i < n1)
+        {
+            unionarrset.insert(arr1[i++]);
+        }
+        while (j < n2)
+        {
+            unionarrset.insert(arr2[j++]);
+        }
+
+        for (auto &a : unionarrset)
+        {
+            result.push_back(a);
+        }
+        return result;
+    }
+
+    vector<int> intersection(vector<int> &arr1, vector<int> &arr2)
+    {
+        // TC :  n1+n2
+        int n1 = arr1.size();
+        int n2 = arr2.size();
+        vector<int> result;
+        int visited[n2] = {0};
+
+        for (int i = 0; i < n1; i++)
+        {
+            for (int j = 0; j < n2; j++)
+            {
+                if (arr1[i] == arr2[j] && visited[j] == 0)
+                {
+                    result.push_back(arr1[i]);
+                    visited[j] = 1;
+                    break;
+                }
+
+                if (arr2[j] > arr1[i])
+                {
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+class UnionIntersectionOptimal
+{
+public:
+    vector<int> unionn(vector<int> &arr1, vector<int> &arr2)
+    {
+        // TC :  n1+n2
+        // SC :  n1+n2
+        int i = 0, j = 0;
+        int n1 = arr1.size();
+        int n2 = arr2.size();
+        vector<int> unionarr;
+
+        while (i < n1 && j < n2)
+        {
+            if (arr1[i] <= arr2[j])
+            {
+                if (unionarr.size() == 0 || unionarr.back() != arr1[i])
+                {
+                    unionarr.push_back(arr1[i]);
+                }
+                i++;
+            }
+            else
+            {
+                if (unionarr.size() == 0 || unionarr.back() != arr2[j])
+                {
+                    unionarr.push_back(arr2[j]);
+                }
+                j++;
+            }
+        }
+        while (i < n1)
         {
             if (unionarr.size() == 0 || unionarr.back() != arr1[i])
             {
@@ -76,39 +154,52 @@ vector<int> unionn(vector<int> &arr1, vector<int> arr2)
             }
             i++;
         }
-        else
+        while (j < n2)
         {
-            if (unionarr.size() == 0 || unionarr.back() != arr2[j])
+            if (unionarr.size() == 0 || unionarr.back() != arr1[j])
             {
-                unionarr.push_back(arr2[j]);
+                unionarr.push_back(arr1[j]);
             }
             j++;
         }
+        return unionarr;
     }
-    while (i < n1)
+    vector<int> intersection(vector<int> &arr1, vector<int> &arr2)
     {
-        if (unionarr.size() == 0 || unionarr.back() != arr1[i])
+        // TC :  n1+n2
+        int n1 = arr1.size();
+        int n2 = arr2.size();
+        vector<int> result;
+
+        int i = 0, j = 0;
+
+        while (i < n1 && j < n2)
         {
-            unionarr.push_back(arr1[i]);    
+            if (arr1[i] < arr2[j])
+            {
+                i++;
+            }
+            else if (arr2[j] < arr1[i])
+            {
+                j++;
+            }
+            else
+            {
+                result.push_back(arr1[i]);
+                i++;
+                j++;
+            }
         }
-        i++;
+        return result;
     }
-    while (j < n2)
-    {
-        if (unionarr.size() == 0 || unionarr.back() != arr1[j])
-        {
-            unionarr.push_back(arr1[j]);
-        }
-        j++;
-    }
-    return unionarr;
-}
+};
 
 int main()
 {
     vector<int> arr1{1, 2, 3, 4, 5, 6, 7, 8, 9};
     vector<int> arr2{1, 2, 3, 4, 5, 6};
-    vector<int> result = unionn(arr1, arr2);
+    UnionIntersectionBrute uib;
+    vector<int> result = uib.unionn(arr1, arr2);
     for (auto &a : result)
     {
         cout << a << " ";
