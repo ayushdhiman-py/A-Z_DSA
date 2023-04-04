@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void solve(vector<int> &nums, vector<vector<int>> &ans, vector<int> temp, int idx)
+void subsetsSolve(vector<int> &nums, vector<vector<int>> &ans, vector<int> temp, int idx)
 {
     if (idx == nums.size())
     {
@@ -10,12 +10,12 @@ void solve(vector<int> &nums, vector<vector<int>> &ans, vector<int> temp, int id
     }
 
     // exclude
-    solve(nums, ans, temp, idx + 1);
+    subsetsSolve(nums, ans, temp, idx + 1);
 
     temp.push_back(nums[idx]);
 
     // include
-    solve(nums, ans, temp, idx + 1);
+    subsetsSolve(nums, ans, temp, idx + 1);
 }
 
 void subsets(vector<int> &nums)
@@ -23,8 +23,8 @@ void subsets(vector<int> &nums)
     vector<vector<int>> ans;
     vector<int> temp;
     int idx = 0;
-    solve(nums, ans, temp, idx);
-    
+    subsetsSolve(nums, ans, temp, idx);
+
     for (auto &a : ans)
     {
         for (auto &ele : a)
@@ -35,9 +35,40 @@ void subsets(vector<int> &nums)
     }
 }
 
+void subsequenceSolve(string str, string op, int it, vector<string> &ans)
+{
+    if (it >= str.length())
+    {
+        // agar empty substring nahi chahiye to ye condition lagegi
+        if (op.length() > 0)
+        {
+            ans.push_back(op);
+        }
+        return;
+    }
+    // exclude
+    subsequenceSolve(str, op, it + 1, ans);
+    // include
+    char ele = str[it];
+    op.push_back(ele);
+    subsequenceSolve(str, op, it + 1, ans);
+}
+
+void subsequence(string str)
+{
+    vector<string> ans;
+    string op = "";
+    int it = 0;
+    subsequenceSolve(str, op, it, ans);
+    for (auto &a : ans)
+    {
+        cout << a << " ";
+    }
+}
+
 int main()
 {
-    vector<int> nums{1, 2, 3};
-    subsets(nums);
+    string s = "abc";
+    subsequence(s);
     return 0;
 }
