@@ -22,7 +22,7 @@ void permute(vector<int> &nums, vector<int> ds, vector<vector<int>> &ans, int fr
     return;
 }
 
-void permuteWithSwap(vector<int> &nums, vector<vector<int>> &ans, int idx)
+void permuteWithSwapBetter(vector<int> &nums, vector<vector<int>> &ans, int idx)
 {
     if (idx == nums.size() - 1)
     {
@@ -34,7 +34,7 @@ void permuteWithSwap(vector<int> &nums, vector<vector<int>> &ans, int idx)
         for (int i = idx; i < nums.size(); i++)
         {
             swap(nums[idx], nums[i]);
-            permuteWithSwap(nums, ans, idx + 1);
+            permuteWithSwapBetter(nums, ans, idx + 1);
             swap(nums[idx], nums[i]);
         }
     }
@@ -47,7 +47,7 @@ void allPermutations(vector<int> &v)
     int n = v.size();
     int freq[n] = {0};
     int idx = 0;
-    permuteWithSwap(v, ans, idx);
+    permuteWithSwapBetter(v, ans, idx);
 
     for (auto &a : ans)
     {
