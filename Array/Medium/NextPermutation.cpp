@@ -3,32 +3,33 @@ using namespace std;
 
 void nextPermutation(vector<int> &nums)
 {
-    int n = nums.size(), k, l;
-    for (k = n - 2; k >= 0; k--)
+    int ind = -1;
+    int n = nums.size();
+
+    for (int i = n - 2; i >= 0; i--)
     {
-        if (nums[k] < nums[k + 1])
+        if (nums[i] < nums[i + 1])
         {
-            // cout << nums[k] << " < " << nums[k + 1];
+            ind = i;
+            cout << nums[i] << "<" << nums[i + 1] << endl;
             break;
         }
     }
-    if (k < 0)
+    if (ind == -1)
     {
         reverse(nums.begin(), nums.end());
+        return;
     }
-    else
+    for (int i = n - 1; i > ind; i--)
     {
-        for (l = n - 1; l > k; l--)
+        if (nums[i] > nums[ind])
         {
-            if (nums[l] > nums[k])
-            {
-                break;
-            }
+            cout << "swapped" << nums[i] << "&" << nums[ind] << endl;
+            swap(nums[i], nums[ind]);
+            break;
         }
-        // cout << "\nswapping  " << nums[k] << " & " << nums[l] << endl;
-        swap(nums[k], nums[l]);
-        reverse(nums.begin() + k + 1, nums.end());
     }
+    reverse(nums.begin() + ind + 1, nums.end());
 
     cout << "\n";
     for (int &ele : nums)
@@ -40,7 +41,7 @@ void nextPermutation(vector<int> &nums)
 int main()
 {
 
-    vector<int> v{2, 1, 5, 3, 4, 0, 0};
+    vector<int> v{2, 0, 8, 1, 7, 2};
     nextPermutation(v);
 
     return 0;
