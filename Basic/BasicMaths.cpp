@@ -27,9 +27,20 @@ int reverse(int n)
     return reversedNum;
 }
 
-int pailindrome(int n, int m)
+void pailindrome(int x)
 {
-    return (n == m);
+    if (x < 0 || x != 0 && x % 10 == 0)
+    {
+        cout << "false";
+        return;
+    }
+    int check = 0;
+    while (x > check)
+    {
+        check = check * 10 + x % 10;
+        x /= 10;
+    }
+    cout << ((x == check || x == check / 10) ? "true" : "false");
 }
 
 void printDivisors(int n)
@@ -56,20 +67,24 @@ void printDivisors(int n)
 void prime(int n)
 {
     int count = 0;
-    for(int i=1; i<sqrt(n); i++){
-        if(n%i==0){
+    for (int i = 1; i < sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
             count++;
-            if((n/i)!=i){
+            if ((n / i) != i)
+            {
                 count++;
             }
         }
     }
-    if(count==2) cout<<"true";
-    else cout<<"false";
+    if (count == 2)
+        cout << "true";
+    else
+        cout << "false";
 }
 
-
-//GCD OR HDF
+// GCD OR HDF
 
 int gdc(int a, int b)
 {
@@ -78,24 +93,28 @@ int gdc(int a, int b)
     //     return b;
     // }
     // b=a%b;
-    // return 0 ; 
-
+    // return 0 ;
 
     //------------
     // ITERATIVE WAY
-    while(a>0 && b>0){
-        if(a>b) a=a%b;
-        else b=b%a;
+    while (a > 0 && b > 0)
+    {
+        if (a > b)
+            a = a % b;
+        else
+            b = b % a;
     }
-    if(a==0) return b;
+    if (a == 0)
+        return b;
     return a;
 }
 
 int main()
 {
     int n = 40, m = 20;
-    int res = gcd(n,m);
-    cout<<__gcd(n,m);
-    cout<<res;
+    int res = gcd(n, m);
+    cout << __gcd(n, m);
+    cout << res << "\n";
+    pailindrome(100111);
     return 0;
 }
