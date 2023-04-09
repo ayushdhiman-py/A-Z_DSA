@@ -48,6 +48,7 @@ void Optimal(vector<int> v, int target)
         // in the below line "count" of "value -> -2" is getting added to count variable and here its "0" because -2 does not even exists
         count += mpp[toRemove];
         // then here below, we are updating the count of the "current prefix sum" value in the map
+        // we got here how many prefix sum are there of the value sum so that whenever we get the sum == k we know that if we check the count of value got by substraction of currSum and target we already know that these many subarrays can be formed if we remove those values that much time
         mpp[sum] += 1;
     }
     cout << count << "\n";
