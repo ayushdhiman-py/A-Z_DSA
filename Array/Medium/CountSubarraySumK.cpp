@@ -38,6 +38,9 @@ void Optimal(vector<int> v, int target)
     int count = 0, sum = 0;
     mpp[0] = 1;
 
+    // COUNTING REASON :-> the reason behind having a count of a prefix sum is that we could have -ve 
+    // values the array and there could be multiple subarrays/prefixes of the same prefix sum
+
     for (int i = 0; i < v.size(); i++)
     {
         sum += v[i];
