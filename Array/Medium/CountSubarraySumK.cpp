@@ -26,23 +26,26 @@ void Better(vector<int> v, int k)
 
 void Optimal(vector<int> v, int target)
 {
-    // TC:- 
+    // Intution behind this algo is that we are adding up each value of the array in the ps(prefix sum) and we are checking constantly that can we chop off some previous value that we are able to make the ps === target.
+
+    // TC:-
     // O(n * logN) - simple map
     // O(n * 1 for best or n for worst)
-    
-    // SC: O(n) 
-    
+
+    // SC: O(n)
+
     unordered_map<int, int> mpp;
-    int count = 0, ps = 0;
+    int count = 0, sum = 0;
     mpp[0] = 1;
 
     for (int i = 0; i < v.size(); i++)
     {
-        ps += v[i];
-        int remove = ps - target;
-        count += mpp[remove];
-        mpp[ps] += 1;
-        // if (mpp.find(ps - k))
+        sum += v[i];
+        int toRemove = sum - target;
+        // in the below line "count" of "value -> -2" is getting added to count variable and here its "0" because -2 does not even exists
+        count += mpp[toRemove];
+        // then here below, we are updating the count of the "current prefix sum" value in the map
+        mpp[sum] += 1;
     }
     cout << count << "\n";
 }
@@ -51,7 +54,7 @@ int main()
 {
 
     vector<int> v = {1, 2, 3, -3, 1, 1, 1, 4, 2, -3};
-    Better(v, 3);
+    // Better(v, 3);
     Optimal(v, 3);
 
     return 0;
