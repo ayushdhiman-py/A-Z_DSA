@@ -52,9 +52,11 @@ void Optimal(vector<int> v, int target)
     }
     cout << count << "\n";
 
-    // the file below this file is real reason behind having a count of every prefix "sum" go back in the list of questions and check the image
+    // the link below this file is real reason behind having a count of every prefix "sum". Check the image
+
+    https://drive.google.com/file/d/1HiXYdSKB7vwKa-iwWn0S-BZOO6XNWze9/view?usp=sharing
     
-    file:///home/ayush/Pictures/Screenshots/Screenshot%20from%202023-04-09%2022-37-15.png
+    // we are updating count as 2 because we found 3-3 as 0 and its count is 2 that means that there were 2 prefix subarrays the are bound to match the target
     
 }
 
