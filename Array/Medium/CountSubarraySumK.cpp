@@ -51,6 +51,10 @@ void Optimal(vector<int> v, int target)
         mpp[sum] += 1;
     }
     cout << count << "\n";
+
+    // the file below this file is real reason behind having a count of every prefix "sum" go back in the list of questions and check the image
+    file:///home/ayush/Pictures/Screenshots/Screenshot%20from%202023-04-09%2022-37-15.png
+    
 }
 
 int main()
