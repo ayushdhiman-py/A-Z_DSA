@@ -1,5 +1,6 @@
 // USED unordered_multimap<int, int> map to find all the subarrays with sum 0;
-#include <iostream>
+
+#include <bits/stdc++.h>
 #include <unordered_map>
 using namespace std;
 
