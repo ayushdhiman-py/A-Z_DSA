@@ -16,6 +16,7 @@ void brute(vector<int> &v)
             {
                 if (v[i] + v[j] + v[k] == 0)
                 {
+
                     // cout << v[i] << " " << v[j] << " " << v[k] << "\n";
                     vector<int> temp = {v[i], v[j], v[k]};
                     sort(temp.begin(), temp.end());
@@ -73,7 +74,7 @@ void optimal(vector<int> &v)
 {
     // TC: O(nlogn) + O(n*m)
     // SC: O(no. of unique triplets to return res)
-    
+
     vector<vector<int>> res;
     // O(nlogn) to sort
     sort(v.begin(), v.end());

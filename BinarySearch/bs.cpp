@@ -43,8 +43,6 @@ int recursive(vector<int> v, int low, int high, int target)
     return recursive(v, low, mid - 1, target);
 }
 
-
-
 int lowerBound(vector<int> arr, int n, int target)
 {
     int start = 0, end = n - 1;
@@ -65,7 +63,6 @@ int lowerBound(vector<int> arr, int n, int target)
     }
     return ans;
 }
-
 
 int upperBound(vector<int> &arr, int target, int n)
 {

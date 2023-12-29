@@ -37,6 +37,8 @@ int main()
     vector<int> a1 = {1, 3, 5, 7};
     vector<int> a2 = {0, 2, 6, 8, 9};
     Optimal1(a1, a2);
+    // Used shell sort in the optimal 2
+    Optimal2(a1, a2);
 
     return 0;
 }

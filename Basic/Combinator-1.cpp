@@ -73,7 +73,7 @@ int main()
 
     // provides combination sum which is equal to target
     Solution obj;
-    vector<int> v = {3, 3, 1};
+    vector<int> v = {3, 3, 1, 2};
     int target = 7;
     obj.combinationSum(v, target);
 }

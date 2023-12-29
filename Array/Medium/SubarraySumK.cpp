@@ -22,7 +22,7 @@ void bruteSumK(vector<int> &v, int n, int k)
 
 void optimalLongestSubarrayWithSumK(vector<int> a, int size, int k)
 {
-    map<long long, int> mpp;
+    unordered_map<long long, int> mpp;
     long long sum = 0;
     int maxlength = 0;
 
@@ -36,6 +36,7 @@ void optimalLongestSubarrayWithSumK(vector<int> a, int size, int k)
         long long rem = sum - k;
         if (mpp.find(rem) != mpp.end())
         {
+            auto ele = mpp.find(rem);
             int len = i - mpp[rem];
             maxlength = max(maxlength, len);
         }

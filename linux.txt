@@ -1,0 +1,254 @@
+//to install downloaded .deb file
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+// wget link to download a .deb file
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+/// installed node like this
+sudo cp -r node-v18.14.2-linux-x64/{bin,include,lib,share} /usr/ 
+///to remove node do
+sudo rm -r bin/{node,npm,npx}
+
+sudo apt purge name
++++Some Basics:-
+"~" -> Home directory
+"/" -> Root directory
+"su" -> used to switch to root user 
+"su username" -> used to switch to different user
+"sudo" -> executes commands with root/super user privilages
+
+++++++++ LS +++++++++
+=>NOTE:: These commands can also be combined works for all commands below
+=>Example:: -la 
+ls -d */ -> shows only directories
+ls -l -> with ownerSettings, permissions, timestamp
+ls -a -> show hidden contents
+ls -author -> shows along with the user
+ls -S -> sorts and list all the content in specified directory by size
+ls *.txt -> shows with specific format
+ls -IS > file.txt -> copies result of ls in  a text file 
+find /path/to/folder -name '*bat*' //find file with certain file name
+
+++++++++ CAT +++++++++
+Used to show contents of text file and concatenate several files into one
+
+cat > file.txt -> used to create and write in a new file
+cat >> file.txt -> append text to a existing file from the terminal
+cat -b -> list number of lines but not blank lines
+cat -n -> numbers the lines and list number of lines but it also do for blank lines
+cat -s -> compresses multiple blank lines into one
+
+++++++++ GREP +++++++++
+to search for a particular string in a text file
+
+grep findthis file.txt -> return result for matching characters "findthis"
+grep -i findthis file.txt -> return result for matching case insensitive string "findthis"
+grep -n findthis file.txt -> result along with their line number
+grep -v findthis file.txt -> result of lines not matching the search string
+grep -c findthis file.txt -> result a number ( of times matched the search string)
+ls | egrep '\.txt' ->shows only text files
+
+++++++++ SORT +++++++++
+to sort the result 
+sort file.txt
+sort -r file.txt -> in reverse order
+sort -f file.txt -> case insensitive order
+
+++++++++ | (pipe command) +++++++++
+used to input the result of one command as input to another command
+
+grep dh file.txt file2.txt | sort -> search 'dh' from both files then sorts them
+
+
+++++++++ CP [flag] source destination +++++++++
+copies file/directory 
+cp -n -> will not overwrite the file
+cp -u -> updates when only when source file is diff from destination file
+cp -r -> for directory copying. 
+
+++++++++ MV [flag] source destination +++++++++
+mv moves the directory or to rename
+mv file1 file2
+mv -u file1 directory -> move only if Source File Is Newer Than the Destination
+sudo mv /home/vivek/app1/ /var/www/html/ -> one folder to another
+
+
+++++++++ MKDIR +++++++++
+mkdir -> create new dir
+mkdir -p f1/f2/f3 -> folder k andr folder k andr folder
+mkdir -p f1/{f2,f3,f4} -> folder k andr 3 folder
+mkdir {f1,f2,f3} -> create mult. folders
+
+
+++++++++ RM & RMDIR +++++++++
+rmdir -> removes the specifies directory
+rmdir -p -> remove both parent and child dir
+rm -r -> removes even non-empty dir
+rm -rp -> removes even non-empty dir inlcuding parent and subdir
+
+
+++++++++ WORKING WITH USER PERMISSIONS +++++++++
+r-read, w-write, x-execute
+
+Denotions:
+users -> 'u'
+groups -> 'g'
+others -> 'o'
+all -> 'a'
+
+file types:
+normal file -> '-'
+directory -> 'd'
+character special file -> 'c'
+binary special file -> 'b' 
+
+defined below --> drwxrwxr-x
+
+     user 		group		other's
+     permissions	permissions	permissions
+d    r w x 		r w x 		r - x
+| 
+f
+i
+l
+e
+
+t
+y
+p
+e
+
+
++++++++ CHMOD +++++++
+used to change the access permissions of files and directories
+instead of using + and - we can replace that with '=' sign which replaces it.	
+->chmod g+wx filename
+->chmod u=wrx,o-wx filename
+
++++++++ CHOWN +++++++
+used to change the owner of files and directories
+->chown username filename
+->chown username:grpname filename //changes both owner and grp ownership of a particular file
+
++++++++ CHGRP +++++++
+used to change the group ownership of files and directories
+chgrp grpname filename //change grp ownership of a file
+
+
+++++++++++++++++++
++++ TAR FILES UNZIP / ZIP ++
+++++++++++++++++++
+Tar is used to compress and decompress a file
+- tar -cvf tar-file-name-to-be file-name
+- tar -xvf tar-file-name 
+- tar -xf archive.tar.gz
+	
+
++++++++++++++++++++++
++++ creating users ++
++++++++++++++++++++++
+
+sudo useradd username //create a new user
+sudo passwd username //setup password for that user
+sudo userdel username //delete that particular user
+
+sudo groupadd grpname 
+sudo groupdel grpname
+sudo usermod -g grpname username // add a user to a grp	
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+wc helps to find word count > letter word lines
+++++++++++++++++++++++++++++++++++++++++++++++++++
+Sort sorts the input '-r' in reverse
+++++++++++++++++++++++++++++++++++++++++++++++++++
+Uniq omits the same word and prints the uniq only if in sorted order | we have the same in sort which is sort  -u
+uniq -d prints only duplicates 
+uniq -u which prints only the non-duplicate lines
+uniq -c counts the duplicates
+example 'sort flavours.txt | uniq -c (counts the same words) | sort -nr (prints it in reverse numerically sorted)
+++++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

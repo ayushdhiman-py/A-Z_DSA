@@ -17,8 +17,7 @@ void minimizeArrayValue(vector<int> &nums)
 
 int main()
 {
-    // your code goes here
-    vector<int> nums{13, 13, 20, 0, 8, 9, 9};
+    vector<int> nums{3, 7, 1, 6};
     minimizeArrayValue(nums);
 
     return 0;

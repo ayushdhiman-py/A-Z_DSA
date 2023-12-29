@@ -1,0 +1,56 @@
+lsb->right
+msb->left
+
+---------------------------------
+int printBinary(int n)
+{
+    int bits = 0, i = 1;
+    while (n != 0)
+    {
+        int bit = n % 2;
+        n /= 2;
+        bits = bits + i * bit;
+        i *= 10;
+    }
+    return bits;
+}
+--------------------------------------
+//Print binary//
+void pb(int num){
+	for(int i=10; i>=0; i--){
+		cout<<((num>>i) & 1);
+	}
+}
+-----------------------------------------
+//check if ith bit is set or not//
+int num = 9; i = 1;
+
+if((a&(1<<i))!=0){
+	cout<<"Set bit";	
+}
+
+//set a ith bit//
+==> a | (1<<i)
+
+//unset a ith bit//
+& with inverted form of (1<<ith bit) i.e.
+==> (num & (~(1<<i))) 
+
+
+//toggle a bit//
+a^(1<<ith)
+
+//count set bits//
+for(int i=31; i>=0; i--){
+	if (a&(1<<i))!=0) count++;
+}
+
+// clear all lsb till ith bit//
+int num = 9, i= 4 , b, c;
+b = (num & (~((1<<(i+1))-1))); 
+c = (num & ((1<<(i+1))-1));
+
+//check if a number is a power of 2 or not //
+cout<<(n & (n-1)) 
+
+NOTE::: if we do -1 to a number then it will be -> number: 001000 -1 => 000111

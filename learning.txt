@@ -1,0 +1,16 @@
+// SORT A STRING ARRAY BY ITS STRINGS LENGTH //
+sort(st.begin(), st.end(), [](string &a, string &b) { return a.size() < b.size(); });
+
+// SORT Comparator
+static bool cmp(const string &s1, const string &s2) {
+    return s1.length() < s2.length();
+}
+sort(words.begin(), words.end(), cmp);
+
+
+// NUMBER to STRING
+int number = 12345;
+string str = to_string(number);
+
+//
+     
