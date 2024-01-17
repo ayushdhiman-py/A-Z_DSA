@@ -10,29 +10,30 @@ class Node
 public:
     int data;
     Node *next;
+    Node(int d)
+    {
+        data = d;
+        next = NULL;
+    }
 
     Node(int d, Node *next1)
     {
         data = d;
         next = next1;
     }
-
-    Node(int d)
-    {
-        data = d;
-        next = NULL;
-    }
 };
 
 Node *arrtoll(vector<int> &v)
 {
+    // vector<int> arr = {1, 2, 3, 4, 5};
+    //                    
     Node *head = new Node(v[0]);
-    Node *mover = head;
+    Node *temp = head;
     for (int i = 1; i < v.size(); i++)
     {
         Node *curr = new Node(v[i]);
-        mover->next = curr;
-        mover = curr;
+        temp->next = curr;
+        temp = curr;
     }
     return head;
 }
@@ -123,5 +124,6 @@ int main()
     print(head);
     cout << "\n";
 
+   
     return 0;
 }

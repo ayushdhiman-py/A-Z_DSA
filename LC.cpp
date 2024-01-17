@@ -5,24 +5,33 @@ using namespace std;
     cin.tie(nullptr);                 \
     cout.tie(nullptr);
 
+int maxKSubarraySum(vector<int> &a, int k)
+{
+    int n = a.size();
+    int sum = 0;
+    for (int i = 0; i < k; i++)
+    {
+        sum += a[i];
+    }
+
+    int maxi = sum;
+
+    for (int i = k; i < n; i++)
+    {
+        sum = sum + a[i] - a[i - k];
+        maxi = max(maxi, sum);
+    }
+
+    return maxi;
+}
+
 int main()
 {
 
     fast;
-
-    int t = 0;
-    cin >> t;
-    while (t--)
-    {
-        int n, k;
-        cin >> n >> k;
-        vector<int> v(n, 0);
-        for (int i = 0; i < n; i++)
-        {
-            cin >> v[i];
-        }
-        
-    }
+    int k = 3;
+    vector<int> a = {3, 5, 6, 2, 4, 7, 8};
+    cout << maxKSubarraySum(a, k);
 
     return 0;
 }
