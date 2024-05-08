@@ -7,7 +7,7 @@ using namespace std;
     cin.tie(nullptr);                 \
     cout.tie(nullptr);
 
-class Stack
+class Stack2Q
 {
     queue<int> q1;
     queue<int> q2;
@@ -28,7 +28,12 @@ public:
     void pop()
     {
         if (!q1.empty())
+        {
+
+            int ele = q1.front();
             q1.pop();
+            cout << "popped " << ele << "\n";
+        }
         else
             cout << "its empty!";
     }
@@ -50,11 +55,46 @@ public:
     }
 };
 
+class Stack1Q
+{
+    queue<int> q;
+
+public:
+    void push(int x)
+    {
+        q.push(x);
+        int s = q.size() - 1;
+        while (s--)
+        {
+            int ele = q.front();
+            q.pop();
+            q.push(ele);
+        }
+    }
+
+    int top()
+    {
+        return q.front();
+    }
+
+    void pop()
+    {
+        if (!q.empty())
+        {
+            int ele = q.front();
+            q.pop();
+            cout << "popped " << ele << "\n";
+        }
+        else
+            cout << "its empty!";
+    }
+};
+
 int main()
 {
 
     fast;
-    Stack s;
+    Stack1Q s;
     s.push(1);
     s.push(2);
     s.push(3);
