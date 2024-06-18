@@ -112,6 +112,7 @@ int main()
     cout << "Array before building heap:\n";
     minHeap.printHeap();
 
+    // below for loop is same for build heap for loop function
     for (int i = (minHeap.size / 2) - 1; i >= 0; i--)
         minHeap.heapify(i);
 
