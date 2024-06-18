@@ -95,6 +95,14 @@ public:
         decreasekey(ind, INT_MIN);
         extractMin();
     }
+
+    void buildHeap(vector<int> v)
+    {
+        for (int i = (size - 2) / 2; i >= 0; i--)
+        {
+            heapify(i);
+        }
+    }
 };
 
 int main()
@@ -115,6 +123,7 @@ int main()
     // below for loop is same for build heap for loop function
     for (int i = (minHeap.size / 2) - 1; i >= 0; i--)
         minHeap.heapify(i);
+    // TC: O(N)
 
     cout << "Array after building heap:\n";
     minHeap.printHeap();
