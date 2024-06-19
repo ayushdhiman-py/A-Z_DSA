@@ -5,12 +5,68 @@ using namespace std;
     cin.tie(nullptr);                 \
     cout.tie(nullptr);
 
+
+class Solution
+{
+    public:
+    //Heapify function to maintain heap property.
+    void heapify(int arr[], int n, int i)  
+    {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+    
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+        }
+    
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+        }
+    
+        if (largest != i) {
+            swap(arr[i], arr[largest]);
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
+        }
+    }
+
+
+    public:
+    //Function to build a Heap from array.
+    void buildHeap(int arr[], int n)  
+    { 
+    // Your Code Here
+        for(int i=(n-2)/2; i>=0; i--){
+            heapify(arr,n,i);
+        }
+    }
+
+    
+    public:
+    //Function to sort an array using Heap Sort.
+    void heapSort(int arr[], int n)
+    {
+        buildHeap(arr, n);
+        for(int i = n - 1; i >= 1; i--){
+            swap(arr[0], arr[i]);
+            // Call heapify on the root of the reduced heap
+            heapify(arr, i, 0);
+        }
+    }
+
+};
+
+
+
+
 class MinHeap
 {
 public:
     int *arr;
     int size;
     int cap;
+    vector<int> v = {5, 3, 2, 1};
 
     MinHeap(int totalcap)
     {
@@ -56,22 +112,49 @@ public:
     }
 
     // max heapify
-    void maxHeapify(int i) {
-    int l = left(i);
-    int r = right(i);
-    int largest = i;
+    void maxHeapify(int i, int heapSize)
+    {
+        int l = left(i);
+        int r = right(i);
+        int largest = i;
 
-    if (l < size && arr[l] > arr[largest])
-        largest = l;
-    if (r < size && arr[r] > arr[largest])
-        largest = r;
+        if (l < heapSize && v[l] > v[largest])
+            largest = l;
+        if (r < heapSize && v[r] > v[largest])
+            largest = r;
 
-    if (largest != i) {
-        swap(arr[i], arr[largest]);
-        maxHeapify(largest);
+        if (largest != i)
+        {
+            swap(v[i], v[largest]);
+            maxHeapify(largest, heapSize);
+        }
     }
-}
 
+    void heapsort()
+    {
+        buildHeap();
+        int n = v.size();
+        for (int i = n - 1; i >= 1; i--)
+        {
+            swap(v[0], v[i]);
+            maxHeapify(0, i);
+        }
+
+        for (int i = 0; i < v.size(); i++)
+        {
+            cout << v[i] << " ";
+        }
+        cout << "\n";
+    }
+
+    void buildHeap()
+    {
+        int n = v.size();
+        for (int i = (n - 2) / 2; i >= 0; i--)
+        {
+            maxHeapify(i, n);
+        }
+    }
 
     int extractMin()
     {
@@ -113,14 +196,6 @@ public:
     {
         decreasekey(ind, INT_MIN);
         extractMin();
-    }
-
-    void buildHeap(vector<int> v)
-    {
-        for (int i = (size - 2) / 2; i >= 0; i--)
-        {
-            heapify(i);
-        }
     }
 };
 
@@ -170,6 +245,8 @@ int main()
     minHeap.deletekey(3);
     cout << "Array after deletekey:\n";
     minHeap.printHeap();
+
+    minHeap.heapsort();
 
     return 0;
 }
