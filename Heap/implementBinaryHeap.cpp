@@ -40,6 +40,7 @@ public:
         cout << "Inserted " << num << "\n";
     }
 
+    // min heapify
     void heapify(int num)
     {
         int l = left(num), r = right(num), smallest = num;
@@ -53,6 +54,24 @@ public:
             heapify(smallest);
         }
     }
+
+    // max heapify
+    void maxHeapify(int i) {
+    int l = left(i);
+    int r = right(i);
+    int largest = i;
+
+    if (l < size && arr[l] > arr[largest])
+        largest = l;
+    if (r < size && arr[r] > arr[largest])
+        largest = r;
+
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        maxHeapify(largest);
+    }
+}
+
 
     int extractMin()
     {
