@@ -9,9 +9,17 @@ int main()
 {
 
     fast;
-    vector<int> a = {1, 2, 3, 5};
-    int n = 5;
-    
+    int cnt = 0;
+    int n = 4;
+    for (int i = 2; i<n; i++)
+    {
+        if (n % i == 0)
+        {
+            cout << "Not Prime";
+            return 0;
+        }
+    }
+    cout << "prime";
 
     return 0;
 }

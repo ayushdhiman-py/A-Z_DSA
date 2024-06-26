@@ -127,7 +127,7 @@ public:
 
     int peek() const
     {
-        if (isEmpty())
+        if (isEmpty()==-1)
         {
             cout << "Stack is empty!" << endl;
             return -1;
@@ -174,6 +174,8 @@ int main()
     cout << "Front element is: " << q.peek() << endl;
     q.dequeue();
     q.dequeue();
+
+
     Stack s(5);
 
     s.push(1);
@@ -189,4 +191,83 @@ int main()
     cout << "Top element is: " << s.peek() << endl;
 
     return 0;
+}
+
+
+
+
+// algorithm push(item){
+//     if(stackisfull){
+//         print("stack is full")
+//         return false;
+//     }
+//     arr[++top] = item
+//     return true
+// }
+
+
+
+// algorithm pop(){
+//     if(isempty){
+//         print("stack empty")
+//         return false
+//     }
+//     return top--;
+// }
+
+
+
+//  size = 5
+// FIFO    
+
+// // jb kuch insert krna hota h to rear++
+// // jb kuch delete krna hota h to front++
+//               f             r
+// index->  -1   0   1    2    3   4
+//              --------------------
+//               10  20   30  
+//              --------------------
+
+
+// algorithm q_Push_NORMAL(val){
+//     if(rear == sizeofQ-1){
+//         print("q is full")
+//         return false
+//     }
+//     else{
+//         // pehli bar insertion
+//         if(rear==-1){
+//             front++ 
+//             rear=0
+//             q[rear]=val
+//         }
+//         // dusri bar insertion
+//         else{
+//             rear++
+//             q[rear] = val
+//         }
+//     }
+// }
+
+// // delete in normal Q
+
+// algo delete(){
+//     if(front==-1){
+//         print("q is empty")
+//         return false;
+//     }
+//     else{
+
+//     }
+// }
+
+
+// -----------------------------------------
+
+
+
+algo insertAtFront(val){
+    if(front==-1){
+        front++ rear++
+    }
 }
